@@ -27,3 +27,7 @@ Connect external stylesheet for better design control.
 Store scores using local storage or database.
 
 Add animations and sound effects.
+
+
+
+OUTPUT:![Image](https://github.com/user-attachments/assets/a7a2d8e0-6841-4257-b746-7a46bd986849)
