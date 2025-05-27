@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Reduction Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .game-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Word Reduction Game</h1>
+        <p id="word"></p>
+        <input type="text" id="guess" placeholder="Guess the reduced word">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <p id="result"></p>
+        <p id="score">Score: 0</p>
+    </div>
+
+    <script>
+        const words = ["running", "jumps", "easily", "fairly", "singing"];
+        let currentWord = "";
+        let score = 0;
+        let round = 0;
+        
+        // Function to reduce the word (simple truncation)
+        function reduceWord(word) {
+            if (word.length > 4) {
+                return word.slice(0, word.length - 3); // Simulate reduction
+            }
+            return word;
+        }
+
+        // Function to display a new word
+        function newWord() {
+            if (round >= words.length) {
+                document.getElementById("result").innerText = "Game over!";
+                return;
+            }
+            currentWord = words[round];
+            document.getElementById("word").innerText = "Word: " + currentWord;
+            document.getElementById("guess").value = "";
+            document.getElementById("result").innerText = "";
+        }
+
+        // Function to check the user's guess
+        function checkGuess() {
+            const guess = document.getElementById("guess").value;
+            const reducedWord = reduceWord(currentWord);
+
+            if (guess === reducedWord) {
+                document.getElementById("result").innerText = "Correct!";
+                score++;
+            } else {
+                document.getElementById("result").innerText = "Wrong! The correct word was: " + reducedWord;
+            }
+
+            document.getElementById("score").innerText = "Score: " + score;
+            round++;
+            newWord();
+        }
+
+        // Start the game
+        newWord();
+    </script>
+</body>
+</html>
